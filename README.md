@@ -61,15 +61,16 @@ To use `destrictor` as your CMS:
 ### Why not migrate to Nginx?
 
 `destrictor` is desgined as a CMS for multi users, therefore the system must provide
-access control to different people. Nginx is less confinient than Apache2 since
-we are using `.htaccess` for authorizations.
+access control to different people. Nginx is less convenient than Apache2 since
+we are using `.htaccess` for the level of folder authorizations which can be precisely
+controled.
 
 ### Why not migrate to Git?
 
-`destrictor` has been use for production over than 10 years. From years of
-practices and observations, SVN is a better choice than Git since it support subdirectory checkout.
-One can simply checkout their folder without checkout a entire repository.
-After over 10 years of using `destrictor`, the volume of the repository is more than 50GB+,
+`destrictor` has been use for production more than 10 years. From years of
+practices and observations, SVN is a better decision than Git since it support sub-directory checkout.
+One can simply checkout a needed folder without checkout a entire repository.
+Over more than 10 years of using `destrictor`, the volume of the repository is more than 50GB+,
 which is impossible to be checkout entirely if a new website user arrives.
 Although one can use tools like git-svn, it will increase the complexity of environment and deployment.
 
