@@ -31,7 +31,7 @@ Still, I think a lot of additional work would be required to make it fully-featu
 
 ## About this repository
 
-This repository migrates the [original `destrictor`](http://atterer.org/`destrictor`)
+This repository migrates the [original `destrictor`](http://atterer.org/destrictor)
 which
 
 - migrates from PHP5 to PHP7+
