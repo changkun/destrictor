@@ -39,10 +39,11 @@ can be access completely by an irrlevant address.
 ## Requirements
 
 - Apache 2.4 and above
+- SVN 1.10 and above
 - PHP 7 and above
 - php-dom, php-mbstring
 
-## Getting start
+## Quick start
 
 To use `destrictor` as your CMS:
 
