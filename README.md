@@ -31,24 +31,29 @@ Still, I think a lot of additional work would be required to make it fully-featu
 
 ## About this repository
 
-This repository migrates the [original `destrictor`](http://atterer.org/`destrictor`) that
-written by PHP5 to PHP7, and removes the connection between
-`destrictor` itself and its served website, i.e. a website that managed by `destrictor`
-can be access completely by an irrlevant address.
+This repository migrates the [original `destrictor`](http://atterer.org/`destrictor`)
+which
+
+- migrates from PHP5 to PHP7+
+- migrates from Apache 2.2 to Apache 2.4+
+- eliminates the connection of `destrictor` and its served website, i.e. a website that managed by `destrictor`
+can be access completely by an irrlevant address;
+- UTF-8 native support
 
 ## Requirements
 
-- Apache 2.4 and above
-- SVN 1.10 and above
-- PHP 7 and above
-- php-dom, php-mbstring
+- Apache 2.4+
+- SVN 1.10+
+- PHP 7+
+- [php-dom](http://php.net/manual/en/book.dom.php), [php-mbstring](http://php.net/manual/en/book.mbstring.php)
+- [tidy](http://tidy.sourceforge.net/)
 
 ## Quick start
 
 To use `destrictor` as your CMS:
 
 1. place `destrictor` to a public observable Apache folder (e.g. `/www/var/html`);
-2. configure your folders in `config.php`;
+2. configure your folders in `config.php`, you only need to set `CACHE`/`REPOSITORY`/`WEBSITEPORT`;
 3. access `destrictor` through your browser and follow the installation instructions.
 
 ## License
