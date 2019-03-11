@@ -1,6 +1,6 @@
 # `destrictor`
 
-`destrictor` is a CMS that was oritinally written by [Richard Atterer](http://atterer.org/destrictor), 
+`destrictor` is a CMS that is oritinally written by [Richard Atterer](http://atterer.org/destrictor), 
 which takes a fundamentally different approach 
 to some technical aspects of content generation. 
 Its aim is to get maximum performance by not building pages when they are fetched, 
