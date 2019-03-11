@@ -56,6 +56,23 @@ To use `destrictor` as your CMS:
 2. configure your folders in `config.php`, you only need to set `CACHE`/`REPOSITORY`/`WEBSITEPORT`;
 3. access `destrictor` through your browser and follow the installation instructions.
 
+## Design Reason
+
+### Why not migrate to Nginx?
+
+`destrictor` is desgined as a CMS for multi users, therefore the system must provide
+access control to different people. Nginx is less confinient than Apache2 since
+we are using `.htaccess` for authorizations.
+
+### Why not migrate to Git?
+
+`destrictor` has been use for production over than 10 years. From years of
+practices and observations, SVN is a better choice than Git since it support subdirectory checkout.
+One can simply checkout their folder without checkout a entire repository.
+After over 10 years of using `destrictor`, the volume of the repository is more than 50GB+,
+which is impossible to be checkout entirely if a new website user arrives.
+Although one can use tools like git-svn, it will increase the complexity of environment and deployment.
+
 ## License
 
 GNU GPLv3
