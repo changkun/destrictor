@@ -543,7 +543,7 @@ function /*void*/ xhtmlFile_fileDependUpdated_xhtml(/*array('path'=>)*/ $arr) {
       'Error while executing commit-time PHP code',
       htmlentities($e->getMessage())
         . '<br/>(Line number information is correct for the <em>tidied</em> '
-        . 'file "' . htmlentities(basename("${path}_private.tidy")) . ')',
+        . 'file "' . htmlentities(basename("{$path}_private.tidy")) . ')',
       file_get_contents(CACHE . $path . '_private.tidy'));
   }
 
@@ -555,7 +555,7 @@ function /*void*/ xhtmlFile_fileDependUpdated_xhtml(/*array('path'=>)*/ $arr) {
 
   if (array_key_exists('finished', $info) && $info['finished'] === TRUE)
     return;
-  
+
   xhtmlFile_filter($info, $xhtml);
 }
 //________________________________________
@@ -704,7 +704,7 @@ function /*void*/ xhtmlFile_writePhp(/*string*/ $path, /*string*/ $content,
     $content = $m[2] . $m[1] // swap < ? xml and < ? php
       . substr($content, strlen($m[1]) + strlen($m[2]));
   }
-  
+
   $arr = xhtmlFile_writeConfigPhp($path);
 
   // File-specific code

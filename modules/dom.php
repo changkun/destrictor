@@ -58,7 +58,7 @@ function /*DOMElement*/ getElementById(DOMDocument $doc, /*string*/ $id,
     removed. Trailing slashes are preserved. FALSE is returned for invalid
     paths and also if a fragment identifier # appears at a wrong position. */
 function /*string|FALSE*/ normalizePath(/*string*/ $path) {
-  if ($path{0} != '/') return FALSE;
+  if ($path[0] != '/') return FALSE;
   $x = explode('/', substr($path, 1));
   $xcount = count($x);
   for ($i = 0; $i < $xcount; ++$i) {
@@ -93,7 +93,7 @@ function /*string|FALSE*/ normalizePath(/*string*/ $path) {
     reference to the $destURL. The result will not be correct if the URLs are
     not normalized, i.e. they contain '/../' or '/./' anywhere. */
 function /*string*/ relativeURL(/*string*/ $baseURL, /*string*/ $destURL) {
-  if ($baseURL{0} != '/' || $destURL{0} != '/') return FALSE;
+  if ($baseURL[0] != '/' || $destURL[0] != '/') return FALSE;
   $base = explode('/', substr($baseURL, 1));
   $dest = explode('/', substr($destURL, 1));
   $i = 0;
@@ -167,7 +167,7 @@ function /*string|FALSE*/ dom_crossSiteLink(/*string*/ $path,
       || $relLink == '')
     return $relLink;
   //dlog("dom_crossSiteLink0: $path $relLink");
-  if ($relLink{0} == '/') {
+  if ($relLink[0] == '/') {
     $link = $relLink;
   } else {
     $link = normalizePath(dirname($path . 'x') . '/' . $relLink);
@@ -239,7 +239,7 @@ function /*DOMNode*/ dom_parseXML(DOMDocument $d, /*string*/ $markup) {
   /* Build a small XHTML document, so libxml knows that the implied encoding
      is UTF-8. Furthermore, with that document, occurrences of entities
      (e.g. &auml;) do not cause loadXML() to return FALSE. */
-  $miniDocument = 
+  $miniDocument =
     '<?xml version="1.0" encoding="utf-8"?>'
     . '<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">'
     . '<html xmlns="http://www.w3.org/1999/xhtml">' . $markup . '</html>';

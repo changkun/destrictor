@@ -10,9 +10,9 @@ define('CACHE', '/var/www/your-website-cache-folder');
    will be at REPOSITORY.'/conf/svnserve.conf' */
 define('REPOSITORY', '/var/www/svn/your-svn-folder');
 
-/* Port of the website. The destrictor installation requires port 80 and 433, and 
+/* Port of the website. The destrictor installation requires port 80 and 433, and
    the website accessability will be tested at this port.
-   For instance, the destrictor can be accessed via 127.0.0.1:80 (or port 433), 
+   For instance, the destrictor can be accessed via 127.0.0.1:80 (or port 433),
    the website can be accessed by 127.0.0.1:8080 */
 define('WEBSITEPORT', '8080');
 

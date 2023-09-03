@@ -50,13 +50,13 @@ function /*string*/ documentation_page(/*string*/ $key = '',
     foreach ($x as $id => $link) {
       if (substr($id, 0, 9) == '>fileext.') {
         $id = htmlspecialchars(substr($id, 9));
-        $fileexts .= "  <li><a href=\"${linkPrefix}fileext.$id\">.$id</a></li>\n";
+        $fileexts .= "  <li><a href=\"{$linkPrefix}fileext.$id\">.$id</a></li>\n";
       } else if (substr($id, 0, 5) == '>tag.') {
         $id = htmlspecialchars(substr($id, 5));
-        $tags .= "  <li><a href=\"${linkPrefix}tag.$id\">&lt;$id/&gt;</a></li>\n";
+        $tags .= "  <li><a href=\"{$linkPrefix}tag.$id\">&lt;$id/&gt;</a></li>\n";
       } else if (substr($id, 0, 6) == '>file.') {
         $id = htmlspecialchars(substr($id, 6));
-        $files .= "  <li><a href=\"${linkPrefix}file.$id\">$id</a></li>\n";
+        $files .= "  <li><a href=\"{$linkPrefix}file.$id\">$id</a></li>\n";
       }
     }
     $html = "<h1>Destrictor Documentation</h1>\n\n"
@@ -230,7 +230,7 @@ function documentation_createFileext(/*array()*/ &$x, /*string*/ $leafname,
   if ($n == 0) return;
   $ext = $m[1] . $m[2]; // Can contain space , .
   $extn = $m[1]; // For links and id=""
-  if ($extn{0} == '.') $extn = substr($extn, 1);
+  if ($extn[0] == '.') $extn = substr($extn, 1);
   $leafnamex = htmlspecialchars($leafname);
   $x[".fileext.$extn"] = "<p class=\"destrictor-doc destrictor-extlink\" "
     . "style=\"padding: 1em 0em 1em 1em; width: 25%; float: right;\">File: "
@@ -269,7 +269,7 @@ function documentation_createFunction(/*array()*/ &$x, /*string*/ $leafname,
 // After docs have been generated, add an anchor around "functionName()"
 function documentation_funcLinks(/*array()*/ &$x) {
   foreach ($x as $id => $html) {
-    if ($id{0} != '.') continue; // Only work on HTML content
+    if ($id[0] != '.') continue; // Only work on HTML content
     $n = preg_match_all('/\b(\w+)\(\)/', $html, $m, PREG_OFFSET_CAPTURE);
     if ($n == 0) continue;
     $x[$id] = '';

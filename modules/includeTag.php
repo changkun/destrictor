@@ -179,7 +179,7 @@ function /*void*/ includeTag_xhtmlDom(&$arr) {
   for ($i = $tags->length - 1; $i >= 0; --$i) {
     $tag = $tags->item($i);
     if (!$tag->hasAttribute('id')) continue;
-    /* This file is an inclusion source. Write a ${path}_private.include file
+    /* This file is an inclusion source. Write a {$path}_private.include file
        with the complete current state of the document. We subscribed to the
        xhtmlDom hook with low prio, so all other substitutions etc. should
        already have been performed. -- Note: It may have been possible here
@@ -342,7 +342,7 @@ function includeTag(/*string*/ $src,
       $param = trim($param);
       if (substr($param, 0, 8) != "charset=") continue;
       $charset = substr($param, 8);
-      if ($charset{0} == "\"" && substr($charset, -1) == "\"")
+      if ($charset[0] == "\"" && substr($charset, -1) == "\"")
         $charset = stripslashes(substr($charset, 1, -1));
       break;
     }
@@ -412,7 +412,7 @@ function /*NULL|DOMElement*/ includeTag_commitTimeInclude(/*array*/ &$arr,
   $srcPath = substr($src, 0, $n);
   if ($srcPath == '')
      $srcPath = $path;
-  else if ($srcPath{0} != '/')
+  else if ($srcPath[0] != '/')
     $srcPath = dirname($path) . '/' . $srcPath;
   $srcPath = normalizePath($srcPath);
   if ($srcPath === FALSE)
@@ -436,7 +436,7 @@ function /*NULL|DOMElement*/ includeTag_commitTimeInclude(/*array*/ &$arr,
      not readable for him. */
   $notFound = '<include/> tag: Source "' . $src . '" not found';
   if (!is_file(CACHE . $srcPath . '_private.include')) {
-    dlog('includeTag', ": No ${srcPath}_private.include file");
+    dlog('includeTag', ": No {$srcPath}_private.include file");
     return xhtmlTemplate_errNode($document, $notFound);
   }
   // Parse source document
@@ -448,7 +448,7 @@ function /*NULL|DOMElement*/ includeTag_commitTimeInclude(/*array*/ &$arr,
   if ($ok === FALSE) {
     // Should never happen, as we created the file from a DOM tree earlier
     dlog('includeTag',
-         ": XHTML Parser failed for ${srcPath}_private.include");
+         ": XHTML Parser failed for {$srcPath}_private.include");
     return xhtmlTemplate_errNode($document, $notFound);
   }
   // Look for id="$id"

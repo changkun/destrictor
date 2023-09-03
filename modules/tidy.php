@@ -194,7 +194,7 @@ function /*string*/ tidy_xhtml(/*string*/ $path, /*string*/ $htmlContent) {
      IMHO either way is fine... */
   $command .= ' --numeric-entities yes';
   //syslog(LOG_DEBUG, "tidy: $command");
-  
+
 
   $descriptorSpec = array(0 => array("pipe", "r"),
                           1 => array('pipe', 'w'), 2 => array('pipe', 'w'));
@@ -293,7 +293,7 @@ function /*string*/ tidy_xhtml(/*string*/ $path, /*string*/ $htmlContent) {
     $body .= sprintf("<span class=\"e\"><a id=\"l%d\">%8d</a>: ",
                      $lineNr, $lineNr);
     for ($col = 1; $col <= strlen($l); ++$col) {
-      $char = htmlspecialchars($l{$col - 1});
+      $char = htmlspecialchars($l[$col - 1]);
       if (array_key_exists($col, $tidyPos[$lineNr]))
         $body .= "<span class=\"x\">$char</span>";
       else
@@ -362,7 +362,7 @@ function /*string*/ tidy_specialTagsPrepare(/*string*/ $htmlContent,
                              $htmlContent, $m, PREG_OFFSET_CAPTURE);
   if ($tagCount == 0)
     return $htmlContent;
-  
+
   /* $mm is an array whose entries are arrays with 2 entries. $mm[0][0] is
      the string of the 1st tag, $mm[0][1] its offset in $htmlContent. */
   $mm = $m[0];

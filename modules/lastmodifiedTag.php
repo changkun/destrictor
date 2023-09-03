@@ -115,7 +115,7 @@
 
       %Z or %z - time zone or name or abbreviation
 
-      %% - a literal `%' character 
+      %% - a literal `%' character
  */
 
 require_once(MODULES . '/tidy.php'); // Need this first
@@ -133,18 +133,6 @@ function lastmodifiedTag_xhtmlDom(&$arr) {
   if ($tags->length == 0) return;
 
   $info = svn_info($path);
-  if (@defined(TESTCASES)) $info = 'Path: index.xhtml
-Name: index.xhtml
-URL: file:///somepath/test-cases/test-svn/case-004-lastmodified/index.xhtml
-Repository Root: file:///somepath/test-cases/test-svn
-Repository UUID: 1939633f-af12-0410-a901-9ada41b55ece
-Revision: 1440
-Node Kind: file
-Last Changed Author: richard.atterer
-Last Changed Rev: 1337
-Last Changed Date: 2000-12-31 11:58:59 +0200 (Fri, 31 Dec 2000)
-
-';
   // Look for a string like ': 2006-01-29 22:05:05 +0100 (' in the output
   $found = preg_match(
     '/: (20\d\d)-(\d\d)-(\d\d) (\d\d):(\d\d):(\d\d) ([+-]\d\d\d\d) \(/',
@@ -165,13 +153,13 @@ Last Changed Date: 2000-12-31 11:58:59 +0200 (Fri, 31 Dec 2000)
   // Turn user "joe.bloggs" into "Joe Bloggs"
   $user = str_replace('.', ' ', $user);
   $user = str_replace('%', ' ', $user);
-  $user{0} = strtoupper($user{0});
+  $user[0] = strtoupper($user[0]);
   $n = 0;
   while (TRUE) {
     $n = strpos($user, ' ', $n);
     if ($n === FALSE || $n == strlen($user) - 1) break;
     ++$n;
-    $user{$n} = strtoupper($user{$n});
+    $user[$n] = strtoupper($user[$n]);
   }
 
   // Revision

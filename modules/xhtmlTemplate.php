@@ -464,7 +464,7 @@ function /*string*/ xhtmlTemplate_getTemplateData(&$arr) {
     }
   }
 
-  // If no .template-php or .template found, return default 
+  // If no .template-php or .template found, return default
   if ($templatePath === FALSE)
     return xhtmlTemplate_defaultTemplate();
 
@@ -473,7 +473,7 @@ function /*string*/ xhtmlTemplate_getTemplateData(&$arr) {
   try {
     // Load/execute .template(-php)
     $templateData = xhtmlTemplate_getContentOrEval(
-      CACHE . "${templatePath}_private.orig", $arr,
+      CACHE . "{$templatePath}_private.orig", $arr,
       CACHE . dirname($path));
 
     // Maybe the file contents now include <? sections. Turn them into <?php

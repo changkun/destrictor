@@ -319,8 +319,8 @@ function /*array(SvnChange)*/ svn_parseOutput(/*string*/ $stdout,
     //syslog(LOG_DEBUG, "svn_parseOutput: $line");
     unset($c);
     $c = new SvnChange();
-    $c->content = $line{0};
-    $c->prop = $line{1};
+    $c->content = $line[0];
+    $c->prop = $line[1];
     /* Act upon lines for added/deleted/.. content. First column is for
        changes to file content (A=Added D=Deleted U=Updated C=Conflict
        G=Merged), second column for changes to file property. 'B' in third
@@ -462,7 +462,7 @@ function /*array(string)*/ svn_tree(/*string*/ $path,
     if ($l == '') continue;
     if (substr($l, -1) == "\r") $l = substr($l, 0, -1); // Strip any CR
     $indent = 0;
-    while ($l{$indent} == ' ') ++$indent;
+    while ($l[$indent] == ' ') ++$indent;
     $name = substr($l, $indent);
     $x = $dir[$indent] . $name;
     //syslog(LOG_DEBUG, "svn_tree: $indent $name => $x");

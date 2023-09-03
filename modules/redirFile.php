@@ -24,7 +24,7 @@
 /** @fileext .redir
 
     HTTP redirects. The file contains a single line of text (and optionally
-    empty lines and comment lines beginning with "#"). That line can be 
+    empty lines and comment lines beginning with "#"). That line can be
     <!-- /* --> either an absolute URL ("scheme://site/path") or a
     site-absolute ("/path/to/file") or a relative one ("../../otherdir/").
 
@@ -73,7 +73,7 @@ function /*void*/ redirFile_write(/*string*/ $path) {
   $out = FALSE;
   foreach (explode("\n", $data) as $l) {
     $l = rtrim($l);
-    if ($l == '' || $l{0} == '#') continue;
+    if ($l == '' || $l[0] == '#') continue;
     if (!ctype_graph($l)) {  // Security check
       $out = xhtmlTemplate_errDocument($path, 'Error in .redir file',
         'The redirection destination contains non-printable or whitespace '
@@ -86,7 +86,7 @@ function /*void*/ redirFile_write(/*string*/ $path) {
           . 'there is another one, "' . htmlspecialchars($l) . '"', FALSE);
       break;
     }
-    if (preg_match('%^[a-z]+://%i', $l) != 1 && $l{0} != '/') {
+    if (preg_match('%^[a-z]+://%i', $l) != 1 && $l[0] != '/') {
       // Relative URL, turn it into a site-absolute one
       $l = navmenuTag_absoluteURL($path, $l);
       if ($l === FALSE) {
@@ -123,7 +123,7 @@ hook_subscribe('requestTimePhp', 'redirFile_requestTimePhp');
 function /*void*/ redirFile_requestTimePhp(&$arr) {
   $arr['globalcode'] .= '/* redirFile.php */
 function redir(/*string*/ $url) { // $url can be "http://..." or "/path/x..."
-  if ($url{0} == "/") {
+  if ($url[0] == "/") {
     // Get URL of top level of site; will be "/" if whole site is ours
     $siteUrl = $_SERVER["SCRIPT_NAME"];
     for ($i = substr_count(DESTRICTOR_PATH, "/"); $i > 0; --$i)

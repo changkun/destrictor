@@ -203,6 +203,7 @@ function /*void*/ langTag_xhtmlDom(&$arr) {
      our Apache config. */
   $docElem = $arr['result']->documentElement;
   $bodyElem = $docElem->firstChild;
+  $origHtmlClass = '';
   while ($bodyElem != NULL) { // Find <body> element
     if ($bodyElem instanceof DOMElement && $bodyElem->tagName == 'body') {
       $origHtmlClass = $bodyElem->getAttribute('class');
@@ -214,9 +215,9 @@ function /*void*/ langTag_xhtmlDom(&$arr) {
     if ($origCount[$lang] == 0) {
       /* Skip languages which aren't present on the page, i.e. create no
          extra version. However, create symlinks e.g. from de-de to de. */
-      if (strlen($lang) == 5 && $lang{2} == '-')
+      if (strlen($lang) == 5 && $lang[2] == '-')
         xhtmlFile_link($path, substr($lang, 0, 2), $lang, 'langTag');
-      continue; 
+      continue;
     }
 
     // Make contents of <$lang> visible
@@ -269,7 +270,7 @@ function langTag_replaceLangTag(/*DOMDocument*/ &$document,
     $child = $tag->removeChild($tag->childNodes->item($j));
     foreach ($l as $lang) $orig[$lang][] = $child;
   }
-  
+
   // Replace the now empty <xx> with the 1st replacement node
   $parent = $tag->parentNode;
   $replTag = $document->createTextNode('');
@@ -279,10 +280,10 @@ function langTag_replaceLangTag(/*DOMDocument*/ &$document,
     $replTag = $document->createComment('');
     $parent->replaceChild($replTag, $tag);
   }
-  
+
   // Record reference to 1st replacement node
   foreach ($l as $lang) $repl[$lang][] = $replTag;
-  
+
   // Before the 1st replacement node, insert ($childCount-1) more nodes
   for ($j = $childCount - 1; $j > 0; --$j) {
     $tag = $replTag;

@@ -89,7 +89,7 @@ function anyDirOrFile_fileUpdated(SvnChange $c) {
   svn_catToFile($c->path, $f . '_private.tmp');
   @unlink($f);
   rename($f . '_private.tmp', $f);
-  anyDirOrFile_performAutoDel($c->path, '', FALSE, FALSE);  
+  anyDirOrFile_performAutoDel($c->path, '', FALSE, FALSE);
 }
 
 /** Any file deleted, also delete it from CACHE. */
@@ -100,16 +100,16 @@ function anyDirOrFile_fileDeleted(SvnChange $c) {
      anyDirOrFile_performAutoDel() below will actually remove the .depend
      file, so we need to call this function first. */
   depend_fileChanged($c->path);
-  anyDirOrFile_performAutoDel($c->path);  
+  anyDirOrFile_performAutoDel($c->path);
 }
 //______________________________________________________________________
 
 /** Automatically delete generated files if the original file is removed from
     SVN: When $path disappears from SVN, $delPath is deleted. All paths must
     be CACHE-absolute. Internally, this is implemented by recording the list
-    of files to be removed in the file "${path}_private.autodel".  This
+    of files to be removed in the file "{$path}_private.autodel".  This
     function currently only works for files (it calls unlink()), not for
-    directories. Neither $path nor any ${path}_private.* files need to be
+    directories. Neither $path nor any {$path}_private.* files need to be
     added to the list of files to delete, they will be removed automatically.
     $label is a string which can be used to identify a group of files. For
     example xhtmlFile.php uses the string "xhtmlFile". You can delete only
@@ -141,13 +141,13 @@ function /*void*/ anyDirOrFile_autoDel(/*string*/ $path, /*string*/ $delPath,
 //____________________
 
 /** Perform deletion for the CACHE-absolute $path: Delete $path itself, any
-    ${path}_private.* files, and also all files which were specified with
+    {$path}_private.* files, and also all files which were specified with
     anyDirOrFile_autoDel(). If the files which are to be deleted do not
     exist, no error is returned.
     @param $label Pass '' to delete all autodel files, or pass the label to
     delete only autodel files with this label, or FALSE not to delete any
     autodel files. The _private.autodel file is not modified.
-    @param $delPrivate If TRUE, delete all ${path}_private.* files
+    @param $delPrivate If TRUE, delete all {$path}_private.* files
     @param $delPath If TRUE, delete CACHE.$path */
 function /*void*/ anyDirOrFile_performAutoDel(/*string*/ $path,
     /*string*/ $label = '', /*bool*/ $delPrivate = TRUE,
@@ -174,11 +174,11 @@ function /*void*/ anyDirOrFile_performAutoDel(/*string*/ $path,
     }
   }
 
-  // Delete $path itself  
+  // Delete $path itself
   if ($delPath)
     @unlink($file);
 
-  // Delete ${path}_private.*
+  // Delete {$path}_private.*
   if (!$delPrivate) return;
   $dir = dirname($file);
   $files = anyDirOrFile_dir($dir);

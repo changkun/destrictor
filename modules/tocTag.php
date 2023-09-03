@@ -286,9 +286,9 @@ function /*array(DOMNOde)*/ tocTag_getHeadings(DOMDocument $doc,
     if (!($elem instanceof DOMElement)) continue;
     $elemClass = ' ' . $elem->getAttribute('class') . ' ';
     if (strlen($elem->tagName) == 2
-        && ($elem->tagName{0} == 'h' || $elem->tagName{0} == 'H')
-        && ctype_digit($elem->tagName{1})
-        && $elem->tagName{1} >= 1 && $elem->tagName{1} <= 6
+        && ($elem->tagName[0] == 'h' || $elem->tagName[0] == 'H')
+        && ctype_digit($elem->tagName[1])
+        && $elem->tagName[1] >= 1 && $elem->tagName[1] <= 6
         && preg_match('/\snotoc\s/', $elemClass) == 0
         && substr($elem->getAttribute('id'), 0, strlen($prefix))
            == $prefix) {
@@ -335,12 +335,12 @@ function /*string*/ tocTag_createId(DOMDocument $doc, DOMElement $node) {
   //syslog(LOG_DEBUG,'ID4 '.$id);
   // Eliminate any non-standard characters, turn multiple into just one '-'
   $id = preg_replace('/[^a-z0-9_.]+/', '-', $id);
-  if ($id{0} == '-') $id = substr($id, 1);
+  if ($id[0] == '-') $id = substr($id, 1);
   // Must start with character
-  if (!ctype_alpha($id{0})) $id = 'id-' . $id;
+  if (!ctype_alpha($id[0])) $id = 'id-' . $id;
 
   $idLen = strlen($id);
-  if ($id{$idLen - 1} == '-') $id = substr($id, 0, $idLen - 1);
+  if ($id[$idLen - 1] == '-') $id = substr($id, 0, $idLen - 1);
 
   $suffix = '';
   while (TRUE) {

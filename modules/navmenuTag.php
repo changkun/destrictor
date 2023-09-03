@@ -60,7 +60,7 @@
     will only output three nested &lt;ul&gt; lists:
 
     <pre>
-    * menu-item 
+    * menu-item
     * sub-menu
 &nbsp;
     * sub-sub
@@ -352,10 +352,10 @@ function navmenuTag_fileUpdated_navmenu(SvnChange $c) {
     of the link destination. None of the arguments needs to be normalized. */
 function /*string*/ navmenuTag_absoluteURL(/*string*/ $baseURL,
                                            /*string*/ $anchor) {
-  if ($baseURL{0} != '/') return FALSE;
-  if ($anchor{0} == '/')
+  if ($baseURL[0] != '/') return FALSE;
+  if ($anchor[0] == '/')
     $b = $anchor;
-  else if ($anchor{0} == '#')
+  else if ($anchor[0] == '#')
     $b = $baseURL . $anchor;
   else
     $b = dirname($baseURL . 'x') . '/' . $anchor;
@@ -425,7 +425,7 @@ function /*array(MenuTree)*/ navmenuTag_getMenu(/*string*/ $path) {
     foreach (explode("\n", $menuData) as $line) {
       ++$lineNr;
       $line = rtrim($line, "\r");
-      if (empty($line) || $line{0} == '#') continue;
+      if (empty($line) || $line[0] == '#') continue;
       if ($line == 'TOP') { $up = ''; continue; }
       $n = strpos($line, ' ');
       if ($n === FALSE || $n == 0)
@@ -621,7 +621,7 @@ function /*string*/ navmenuTag_getMenuData(/*string*/ $path, &$navmenuPath,
     return xhtmlTemplate_getContentOrEval( // Important: Turn <? into &lt;?
       CACHE . "$dirname/index.navmenu_private.orig", $info);
   }
-  
+
   // No .navmenu file found, so scan dir and create our own
   dlog('navmenuTag', "_getMenuData:   No navmenu data found, creating dir listing");
   depend_addDependency($regenPath, $dirname . '/');
@@ -631,7 +631,7 @@ function /*string*/ navmenuTag_getMenuData(/*string*/ $path, &$navmenuPath,
   if ($dh) {
     while ($dh && FALSE !== ($f = readdir($dh))) {
       if ($f == '.' || $f == '..') continue;
-      $ff = htmlspecialchars(strtoupper($f{0}) . substr($f, 1));
+      $ff = htmlspecialchars(strtoupper($f[0]) . substr($f, 1));
       if (is_dir(CACHE . $dirname . '/' . $f)) {
         $menuData["$f/"] = $ff;
         continue;

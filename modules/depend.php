@@ -119,7 +119,7 @@ function /*void*/ depend_addToQueue(/*string*/ $path) {
         and return the contents of the directory.
 
     depend_addDependency() will cause "$path" to be appended to the file
-    "${dependencyPath}_private.depend" (sic! NOT the other way
+    "{$dependencyPath}_private.depend" (sic! NOT the other way
     round). Multiple calls with the same arguments will only cause the
     dependency to be added once. If either argument is NULL, this function
     does nothing.
@@ -144,11 +144,11 @@ function /*void*/ depend_addToQueue(/*string*/ $path) {
     foo.xhtml.navmenu is not present, it *still* adds a dependency for
     it. That way, things will be regenerated correctly if the
     foo.xhtml.navmenu file is added at a later time.
- 
+
     Note: There is no direct way to remove a dependency! This way, more data
     than necessary may sometimes be regenerated. However, dependencies which
     are no longer present will eventually disappear, because
-    "${dependencyPath}_private.depend" is removed and rebuilt whenever
+    "{$dependencyPath}_private.depend" is removed and rebuilt whenever
     depend_fileChanged($dependencyPath) is called. Thus, in a way the system
     is "self-healing" because wrong dependency information will only be used
     at most once for regeneration.
@@ -267,7 +267,7 @@ function /*void*/ depend_flushQueue() {
 
 /** Notify the system that the file at $dependencyPath (CACHE-absolute path)
     has changed (or was removed). This function reads the file
-    "${dependencyPath}_private.depend" and calls depend_addToQueue() for each
+    "{$dependencyPath}_private.depend" and calls depend_addToQueue() for each
     of its unique entries. The .depend file is then overwritten with an empty
     file, as it will be rebuilt while the files are rebuilt.  If no .depend
     file is present, this function does nothing. */
